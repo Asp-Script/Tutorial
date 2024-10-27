@@ -1,0 +1,34 @@
+@inject NavigationManager NavigationManager
+
+
+<h3>Server List Component</h3>
+@if (this.servers != null && this.servers.Count > 0)
+{
+    <Virtualize Items ="this.servers" Context = "server">
+        <ServerComponent Server = "server"></ServerComponent>    
+    </Virtualize>
+}
+@code 
+{
+    [Parameter]
+    public string? CityName { get; set; }
+
+    [Parameter]
+    public string SearchFilter { get; set; } = "";
+
+    private List<Server>? servers;
+
+    protected override void OnParametersSet()
+    {
+        if(string.IsNullOrWhiteSpace(this.SearchFilter))
+        {
+            servers = ServerRepository.GetServerByCity(CityName??"Toronto");
+        }
+        else
+        {
+            servers = ServerRepository.SearchServers(this.SearchFilter);
+
+        }
+    }
+    
+}

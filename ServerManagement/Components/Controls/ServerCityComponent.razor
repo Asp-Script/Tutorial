@@ -1,0 +1,29 @@
+<h3>Server City Component</h3>
+@if (citiesRepository != null)
+{
+@foreach(var cities in citiesRepository)
+    {   
+        <ServerCitiesComponent 
+            cities = "@cities"
+            selectedCity = "@selectedCity"
+            SelectCityCallBack="HandleCitySelection"
+        >
+        </ServerCitiesComponent>
+    }
+}
+
+
+@code
+{
+    private string selectedCity = "Toronto";
+    private List<string> citiesRepository = CitiesReposity.GetCities();
+    private void HandleCitySelection(string cityName)
+    {
+       selectedCity = cityName; 
+       SelectedCityCallback.InvokeAsync(cityName);
+    }
+
+    [Parameter]
+    public EventCallback<String> SelectedCityCallback { get; set; }
+
+}

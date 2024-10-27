@@ -1,0 +1,71 @@
+﻿@page "/servers"
+@using System.Diagnostics
+
+@rendermode InteractiveServer
+
+
+<h3>Servers</h3>
+<br/>
+<br/>
+
+<div class = "container-fluid">
+    <div class="row w-50">
+    
+    <ServerCityComponent SelectedCityCallback = "HandleCitySelection"></ServerCityComponent>
+    <ServerComponent> </ServerComponent>
+    <ServerSearchComponent SearchServerCallback = "HandleSearchServer"></ServerSearchComponent>
+    </div>
+</div>
+
+<br />
+
+
+<ServerListComponent 
+    @rendermode = "InteractiveServer" 
+    CityName = "@this.selectedCity"
+    SearchFilter = "@searchFilter"
+>
+</ServerListComponent>
+
+
+<p>
+    <a href = "/servers/add" class = "btn btn-primary">Add Server</a>
+</p>
+
+<p> 
+    <button 
+        class = "btn btn-secondary"
+        @* @onclick = "@( () => {
+            this.servers.Insert(0, new Server { Name = "ServerA" , City = "Toronto" } );       
+        } )" *@
+        >
+        Add server 2</button>
+
+</p>
+
+@code {
+    private string searchFilter = "";
+    private string selectedCity = "Toronto";
+    private string _serverFilter = "";
+    private string serverFilter {get => _serverFilter; set {
+        _serverFilter = value;
+        // this.servers = ServerRepository.SearchServers(_serverFilter);
+    }} 
+        private void HandleSearch()
+    {
+        // this.servers = ServerRepository.SearchServers(serverFilter);
+        // this.selectedCity = string.Empty;
+    }
+
+    private void HandleCitySelection (string cityName)
+    {
+        selectedCity = cityName;
+        this.searchFilter = string.Empty;
+    }
+
+    private void HandleSearchServer(string searchFilter)
+    {
+        this.searchFilter = searchFilter;
+    }
+}
+
