@@ -14,6 +14,7 @@
 
 @code
 {
+    
     [Parameter]
     public string selectedCity { get; set; } = "Toronto";
     
@@ -24,7 +25,10 @@
     public EventCallback<string> SelectCityCallBack { get; set; }
     public void SelectCity(string cityName)
     {
-        
         SelectCityCallBack.InvokeAsync(cityName); 
+    }
+    public void searchReset () 
+    {
+        selectedCity = "Toronto";
     }
 }

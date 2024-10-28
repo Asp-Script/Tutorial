@@ -11,9 +11,9 @@
 <div class = "container-fluid">
     <div class="row w-50">
     
-    <ServerCityComponent SelectedCityCallback = "HandleCitySelection"></ServerCityComponent>
+    <ServerCityComponent @ref="serverCityComponent" SelectedCityCallback = "HandleCitySelection"></ServerCityComponent>
     <ServerComponent> </ServerComponent>
-    <ServerSearchComponent SearchServerCallback = "HandleSearchServer"></ServerSearchComponent>
+    <ServerSearchComponent @ref="serverSearchComponent"SearchServerCallback = "HandleSearchServer"></ServerSearchComponent>
     </div>
 </div>
 
@@ -47,6 +47,10 @@
     private string searchFilter = "";
     private string selectedCity = "Toronto";
     private string _serverFilter = "";
+
+    private ServerCityComponent? serverCityComponent;
+    private ServerSearchComponent? serverSearchComponent;
+
     private string serverFilter {get => _serverFilter; set {
         _serverFilter = value;
         // this.servers = ServerRepository.SearchServers(_serverFilter);
@@ -61,11 +65,14 @@
     {
         selectedCity = cityName;
         this.searchFilter = string.Empty;
+
+        serverSearchComponent?.ClearFilter();
     }
 
     private void HandleSearchServer(string searchFilter)
     {
         this.searchFilter = searchFilter;
+        serverCityComponent?.ClearSelection();
     }
 }
 

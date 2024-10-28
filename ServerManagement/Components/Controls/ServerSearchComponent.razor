@@ -1,7 +1,7 @@
     <div class="input-group mb-3">
         <input type="text" class = "form-control" placeholder ="Search Server" 
-            @bind-Value = "serverFilter"
-            @bind-Value:event = "oninput"
+            @bind-value = "serverFilter"
+            @bind-value:event = "oninput"
         />
         <button class="btn btn-outline-secondary" type="button" id ="button-search" @onclick = "HandleSearch">Search</button>
     </div>
@@ -12,6 +12,10 @@
     [Parameter]
     public EventCallback<string> SearchServerCallback { get; set; }
     
+    public void ClearFilter()
+    {
+        this.serverFilter = string.Empty;
+    }
     private string serverFilter = "";
 
     private void HandleSearch()

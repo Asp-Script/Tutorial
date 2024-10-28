@@ -7,6 +7,28 @@
         @Server.Name in @Server.City is  
         <span style ="color:@(Server.IsOnline?"green":"red")">@(Server.IsOnline?"online":"offline")</span>&nbsp;
         <a href="@($"/servers/{Server.ServerId}")" class="btn btn-link">Edit</a>
+        
+        
+        @if (Server.IsOnline)
+        {
+            <button type = "button" class = "btn-outline-danger"
+                @onclick = "@(() => { Server.IsOnline = false;})"
+            >
+                turn off
+            </button>
+        }
+        else
+        {
+            <button type = "button" class = "btn-outline-success"
+                @onclick = "@(() => { Server.IsOnline = true;})"
+            >
+                turn on 
+            </button>
+        }
+
+        <button type="button" class="btn btn-link"
+            @onclick="@(()=> { this.editingServer = !this.editingServer; })"
+        >Edit easy</button>
         <EditForm
             Model = "Server"
             FormName = "@($"form-server{Server.ServerId}")"
@@ -15,11 +37,22 @@
             <button class = "btn btn-primary" type = "submit">Delete</button>
         </EditForm>
     </li>
+
+ 
+    @if (editingServer)
+    {
+        <ServerManagement.Components.Pages.EditServer
+            Id = "this.Server.ServerId"
+        ></ServerManagement.Components.Pages.EditServer>
+    }
 }
 
 @code {
     [Parameter]
     public Server? Server { get; set; } 
+
+    private bool editingServer = false;
+
     private void DeleteServer(int serverId) 
     {
         if(serverId >0)
