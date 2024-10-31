@@ -1,13 +1,41 @@
 @inject NavigationManager NavigationManager
 
 
-<h3>Server List Component</h3>
-@if (this.servers != null && this.servers.Count > 0)
-{
-    <Virtualize Items ="this.servers" Context = "server">
+@* <RepeaterComponent Items = "this.servers">
+    <Row Context = "server">
         <ServerComponent Server = "server"></ServerComponent>    
-    </Virtualize>
-}
+    </Row>
+</RepeaterComponent>
+*@
+<table class = "table table-striped">
+    <RepeaterComponent Items = "servers">
+        <Header>
+            <thead>
+                <tr>
+                    <th>
+                        Name
+                    </th>
+                    <th>
+                        City
+                    </th>
+                    <th>
+                        People Online
+                    </th>
+                    <th>
+
+                    </th>
+                    <th>
+
+                    </th>
+                </tr>
+            </thead>
+        </Header>
+        <Row Context = "server">
+            <ServerComponent Server = "server"></ServerComponent>
+        </Row>
+    </RepeaterComponent>
+</table>
+
 @code 
 {
     [Parameter]

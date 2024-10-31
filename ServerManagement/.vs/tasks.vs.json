@@ -1,0 +1,15 @@
+{
+  "version": "0.2.1",
+  "tasks": [
+    {
+      "taskLabel": "task-bin",
+      "appliesTo": "bin/",
+      "type": "launch"
+    },
+    {
+      "taskLabel": "task-ServerManagement",
+      "appliesTo": "/",
+      "type": "launch"
+    }
+  ]
+}

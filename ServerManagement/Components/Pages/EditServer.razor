@@ -18,16 +18,23 @@
     </p>
 
 
-    <EditForm Model = "server" FormName = "formServer" OnSubmit="Submit">
+    <EditForm Model = "server" FormName = "formServer" OnSubmit="Submit" >
         <InputNumber @bind-Value = "server.ServerId" hidden ></InputNumber>
-         <div class="row mb-3">
+         
+        <FieldComponent Label = "Name">
+            <Control>
+                <InputText @bind-Value = "server.Name" class="form-control"></InputText>
+            </Control>
+        </FieldComponent>    
+
+        <div class="row mb-3 input-width">
             <div class="col-2">
                 <label class="col-form-label">Name</label>
             </div>
             <div class="col-8">
-                <InputText @bind-Value = "server.Name" class="form-control"></InputText>
             </div>
         </div>
+
         <div class="row mb-3">
             <div class="col-2">
                 <label class="col-form-label">City</label>
@@ -36,6 +43,8 @@
                 <InputText @bind-Value = "server.City" class="form-control"></InputText>
             </div>
         </div>
+
+
         <div class="row mb-3">
             <div class="col-2">
                 <label class="col-form-label">Online</label>

@@ -5,6 +5,9 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
+
+builder.Services.AddCascadingValue("SelectedCity", sp => "Toronto");
+
 builder.Services.AddTransient<IApplicationBuilder,ApplicationBuilder>();
 
 var app = builder.Build();

@@ -1,3 +1,11 @@
+/* _content/ServerManagement/Components/Controls/ServerSearchComponent.razor.rz.scp.css */
+
+
+
+.input-width[b-oosxl0rb43] 
+{
+    width: 90%;
+}
 /* _content/ServerManagement/Components/Layout/MainLayout.razor.rz.scp.css */
 .page[b-qeotobl5bn] {
     position: relative;
@@ -200,4 +208,11 @@ main[b-qeotobl5bn] {
         height: calc(100vh - 3.5rem);
         overflow-y: auto;
     }
+}
+/* _content/ServerManagement/Components/Pages/EditServer.razor.rz.scp.css */
+
+
+.input-width[b-2bg34o31dz] 
+{
+    width: 100%;
 }
